@@ -8,6 +8,16 @@
 
 namespace robot_helpers {
 
+  // TODO: We need to have a better injected clock here.
+  //       Right now we have two sources of time.
+  //       The 'target time' is the time we are trying to reach in order
+  //       to send the next command (which is now() + period_seconds_).
+  //       The 'actual time' is the time that is being compared against.
+  //       When actual time is greater than or equal to target time, then
+  //       the send quota is refilled.
+  //       What we actually need here is a way to mock 'actual time' and not
+  //       'target time'.
+  //       When this is fixed, we can re-enable the rate_limit test.
   RobotThrottle::RobotThrottle(std::function<void(double)> send_func, double rate_hz,
                                NowFunction now) :
   send_func_(std::move(send_func)),

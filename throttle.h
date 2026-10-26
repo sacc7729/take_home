@@ -56,6 +56,8 @@ namespace robot_helpers {
 
             // Submit command for execution on the robot.
             // Overwrites any commands that have not yet been set to the robot.
+            // Note: As soon as the RobotThrottle is constructed, the quota
+            //       is available to send commands at the rate of rate_hz.
             void submit(double command);
 
         private:
